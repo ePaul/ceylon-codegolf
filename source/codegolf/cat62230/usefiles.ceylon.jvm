@@ -1,0 +1,29 @@
+// This was a try to open the unix file streams /dev/stdin and /dev/stdout to
+// copy data between them. This doesn't work – the input object is a Nil, not
+// a file one could read.
+
+import ceylon.file {
+    parsePath,
+    File
+}
+
+void usefiles() {
+    value inputPath = parsePath("/dev/stdin");
+    value input = inputPath.resource.linkedResource;
+    value outputPath = parsePath("/dev/stdout");
+    print(input);
+    print(className(input));
+    assert (is File input,
+        input.readable,
+        is File output = outputPath.resource.linkedResource,
+        output.writable);
+    value inReader = input.Reader();
+    value outWriter = output.Appender();
+    while (true) {
+        value data = inReader.readBytes(50);
+        if (data.size < 1) {
+            break;
+        }
+        outWriter.writeBytes(data);
+    }
+}
