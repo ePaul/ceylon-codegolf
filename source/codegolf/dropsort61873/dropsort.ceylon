@@ -1,4 +1,4 @@
-// dropsort: "sorts" a sequence of integers by dropping all elements which don't fit.
+// Dropsort: "sorts" a sequence of integers by dropping all elements which don't fit.
 //
 // Question:  http://codegolf.stackexchange.com/q/61808/2338
 // My answer: http://codegolf.stackexchange.com/a/61873/2338
